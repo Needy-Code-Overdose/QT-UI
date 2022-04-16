@@ -24,6 +24,14 @@ MainWindow::MainWindow(QWidget *parent)
     //Start
     Cam1->start();
 
+    //New a capturer
+    CamImageCapture = new QImageCapture();
+    CamCaptureSession1.setImageCapture(CamImageCapture);
+
+    //Get the PWD
+    QDir dir;
+    CurrentPath = dir.currentPath();
+
 
 }
 
@@ -38,5 +46,11 @@ int MainWindow::CamCheck()
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+
+void MainWindow::on_CaptureButton_clicked()
+{
+    CamImageCapture->captureToFile(CurrentPath+"CapturedPic"); //Capture it to PWD
 }
 

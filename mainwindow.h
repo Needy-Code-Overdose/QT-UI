@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QCamera>
+#include <QDir>
 #include <QMediaCaptureSession>
 #include <QMediaDevices>
 #include <QMediaRecorder>
@@ -21,11 +22,16 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_CaptureButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QScopedPointer<QCamera> Cam1;
     QScopedPointer<QMediaRecorder> CamRecorder1;
     QMediaCaptureSession CamCaptureSession1;
+    QImageCapture* CamImageCapture;
     int CamCheck(void);
+    QString CurrentPath;
 };
 #endif // MAINWINDOW_H
